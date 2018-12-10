@@ -1,0 +1,116 @@
+  #if 0    
+    
+		//MP9250¦Ì?2¨´¡Á¡Â
+		printf("test \n\n\n\n\n");
+		READ_MPU9250_MAG();
+		READ_MPU9250_ACCEL();
+		READ_MPU9250_GYRO();
+
+		printf("Mag: x:%d \ty:%d\tz:%d   \n", mpu_value.Mag[0],mpu_value.Mag[1],mpu_value.Mag[2]);
+		printf("Gyro: x:%d \ty:%d\tz:%d   \n", mpu_value.Gyro[0],mpu_value.Gyro[1],mpu_value.Gyro[2]);
+		printf("Accel: x:%d \ty:%d\tz:%d   \n", mpu_value.Accel[0],mpu_value.Accel[1],mpu_value.Accel[2]);
+
+
+    //Bmp280 ¦Ì?2¨´¡Á¡Â
+ 		bmp_data.v_actual_temp_float = BMP280_ReadTemperature();
+    bmp_data.actual_press_u64 = BMP280_ReadPressure_int64();
+	  bmp_data.v_actual_press_float = BMP280_ReadPressure();
+	  
+		//?¨¦?¨¹¨°a??DD¨ºy?Y¦Ì???¨¨?¡Áa??
+		printf("T32: %u 'C  \n", bmp_data.v_actual_temp_s32);
+		printf("P32: %u Pa  \n", bmp_data.v_actual_press_u32);
+		printf("P64: %.3f Pa \n", (float)bmp_data.actual_press_u64 / 256.0f);
+		printf("Tf: %.3f  'C \n", bmp_data.v_actual_temp_float);
+		printf("Pf: %.3f Pa  \n", bmp_data.v_actual_press_float);
+
+
+		float altitude, seaLevelhPa, mmHg;
+		mmHg = bmp_data.v_actual_press_float / 133.321995f;
+    		printf("%.2f mmHg \n", mmHg);
+
+		seaLevelhPa = 101325.0f;
+    		altitude = 44330 * (1.0 - pow(bmp_data.v_actual_press_float / seaLevelhPa, 0.19029f));
+    		printf( "%.2f m  \n", altitude);
+	
+
+		printf(" \nerror: %u \n", bmp_data.err_cnt);
+
+#endif
+ 
+#if ADC_engine //adc¦Ì?3?2a¨º?
+				HAL_Delay(500);
+        for(ADC_i = 0,ad1 =0; ADC_i< 100;)
+        {
+            ad1 += ADC_Value[ADC_i++];
+
+        }
+        ad1 /= 50;
+        printf("\r\n******** ADC DMA Example ********\r\n\r\n");
+        printf(" AD1 value = %1.3fV \r\n", ad1*3.3f/4096);
+
+
+#endif
+
+
+#if EC20_engine //ec20D-¨°¨¦?¡ê?¨¦
+		if(Flag_test)
+		{
+			/**********Send the data to the Ground and check it****************/
+			if(HAL_UART_Transmit_IT(&huart4, (uint8_t *)Test_senddata, sizeof(Test_senddata)) != HAL_OK)
+			{
+					Error_Handler();
+			}
+			Delay(100);
+		
+			if(HAL_UART_Receive_IT(&huart4, (uint8_t *)Test_receivedata, sizeof(Test_receivedata)) != HAL_OK)
+			{
+				Error_Handler();
+			}
+			
+			for(uint8_t comparecount=0,Different_flag=0;comparecount<=sizeof(Test_receivedata);comparecount++)//??¡À¨¨?¨®¨º¦Ì?¨¹¨¢???¨ºy?Y
+			{	
+				/*****************COMPARE the flag of the data which form Ground*********************/
+				if(Test_receivedata[comparecount]==Test_receivedata_example[comparecount])
+				{
+					Different_flag++;
+					printf(" Connect %u  \n", Different_flag);
+				}
+				/***************If receive the data from Ground,begain send the data*************/
+				if(Different_flag==sizeof(Test_senddata))
+				{
+					Flag_run=SUCCFULL_STA;//enable the data of GPRS
+				}
+			}
+		}
+		if(Flag_run)
+		{
+		tcp_connect_sever("101.207.17.199","1113");
+		HAL_RTC_GetTime(&RtcHandle, &stimestructureget, RTC_FORMAT_BIN);//Get the time of RTC
+		
+		/***********Set the communication protocol on GPRS.***************/
+		Uavcomunication.Longitude=mpu_value.Mag[0];
+		Uavcomunication.Lantitude=mpu_value.Mag[1];
+		Uavcomunication.Altitude=altitude;
+		Uavcomunication.Speed_x=mpu_value.Accel[0];
+		Uavcomunication.Speed_y=mpu_value.Accel[1];
+		Uavcomunication.Speed_z=mpu_value.Accel[2];
+		Uavcomunication.Roll_angle=mpu_value.Gyro[0];
+		Uavcomunication.Pitch_angle=mpu_value.Gyro[1];
+		Uavcomunication.Yaw_angle=mpu_value.Gyro[2];
+		Uavcomunication.Timestamp=stimestructureget.Seconds;
+		Uavcomunication.Battery_status=0;
+		Uavcomunication.Uav_type=0;
+		Uavcomunication.Vendor="HW";
+		Uavcomunication.System_status=0;
+		
+		/*********ACCORDING TO STATE INIT THE Uavcomunication.System_status*************/
+		if(bmp_data.err_cnt==0)
+		{Uavcomunication.System_status=Uavcomunication.System_status&SENSORS_STATE_OK;}//¡ä??D?¡Â¨ºy?Y??
+		
+		if(Flag_run==1)
+		{Uavcomunication.System_status=Uavcomunication.System_status&CONNECT_STATE_OK;}//??DD¡¤¨¦???¡ê?¨¦3¨¦1|
+		
+		/* To transmit the Uav of date */
+		HAL_UART_Transmit_IT(&huart4,(int8_t *)&Uavcomunication,sizeof(Uavcomunication));//¡¤¡é?¨ª¨ºy?YD-¨°¨¦
+		}
+#endif

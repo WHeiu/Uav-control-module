@@ -1,0 +1,11 @@
+stm32_new\startmanager.o: ..\Src\MPU9250\startmanager.c
+stm32_new\startmanager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+stm32_new\startmanager.o: ..\Src\MPU9250\logg.h
+stm32_new\startmanager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+stm32_new\startmanager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+stm32_new\startmanager.o: ..\Src\MPU9250\startmanager.h
+stm32_new\startmanager.o: ..\Src\MPU9250\mltypess.h
+stm32_new\startmanager.o: ..\Src\MPU9250\stdintinvensense.h
+stm32_new\startmanager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+stm32_new\startmanager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+stm32_new\startmanager.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h

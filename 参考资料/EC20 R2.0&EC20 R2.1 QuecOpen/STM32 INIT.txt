@@ -1,0 +1,62 @@
+
+
+/********TCP CLIENT（Direct push mode）**********/
+AT+QIOPEN=1,0,"TCP","119.27.184.248",1234,0,1 //直传模式
+AT+QISEND=0                                   //向端口0发送数据
+→数据
+0x1A
+/********TCP CLIENT（Transparent access mode）**********/
+
+AT+QIOPEN=1,0,"TCP","119.27.184.248",1234,0,2 //透传模式
+CONNECT                                //向端口0发送数据
+→数据
++++
+
+
+AT
+ATE1
+AT+CPIN?
+/**检查当地的网络信号强度***/
+AT+CSQ
+AT+CGMM
+AT+CGMR
+AT+CGSN
+AT+CPAS
+
+/********TCP CLIENT**********/
+nc -l 1234 > test.txt
+AT+QIOPEN=1,0,"TCP","119.27.184.248",1234,0,2
+
+
+AT+QICLOSE=0,10
+
+/************GPS操作***************/
+AT+QGPS=1     			//开启GPS终端
+AT+QGPSLOC?    			//查询GPS信息
+
+AT+QGPSCFG="gpsnmeatype",1     (配置nmea格式为GGA)
+AT+QGPSEND 		       (结束GPS会话 nmea端口停止上报)
+
+/*************发送短信************/
+AT+CMGF=1
+/**********查询网络状况***********/
+AT+CREG?
+/**********发送短信****************/
+AT+CPMS？  			//短信存储区
+AT+CNMI=1,2,0,1,0
+AT+CSCA?   			//短信中心
+AT+CMGF=1  			//文本格式
+AT+CMGS="13036699696"
+→
+0x1A(结束CTRL+Z的二进制码)
+
+/*******拨打电话**********/ 
+ATD88206255; //注意最后一个分号，一定不要去掉。
+
+//额外扩展
+ATH //挂机
+ATA //接通
+
+
+
+

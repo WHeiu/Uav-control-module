@@ -1,0 +1,150 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.26.2.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: wei hu, chengdudaxue, LIC=8MZ56-DCJLR-9XBUW-QACVB-H3ETI-HYM5S
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.26.2.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.26.2.0
+Dialog DLL:      DCM.DLL V1.17.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
+Dialog DLL:      TCM.DLL V1.36.1.0
+ 
+<h2>Project:</h2>
+E:\Work\EC20\无人机管控模块\无人机管控模块\程序\stm32_new_HAL_LL\Stm32_New-1.1.1 - 副本\MDK-ARM\stm32_new.uvprojx
+Project File Date:  11/25/2018
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'stm32_new'
+compiling EC20.c...
+..\Src\EC20\EC20.c(295): warning:  #177-D: variable "Str_Len"  was declared but never referenced
+  				unsigned short Str_Len = 0;
+..\Src\EC20\EC20.c(824): warning:  #177-D: variable "Flag"  was declared but never referenced
+  	  int i = 0, N = 0 , O = 0, Flag = 1;
+..\Src\EC20\EC20.c(880): warning:  #177-D: variable "N"  was declared but never referenced
+  	  int i = 0, N = 0 , O = 0,OP = 0, NP = 0, Flag = 1;
+..\Src\EC20\EC20.c(947): warning:  #177-D: variable "N"  was declared but never referenced
+  	  int i = 0, N = 0 , O = 0,OP = 0, NP = 0, Flag = 1;
+..\Src\EC20\EC20.c(947): warning:  #177-D: variable "Flag"  was declared but never referenced
+  	  int i = 0, N = 0 , O = 0,OP = 0, NP = 0, Flag = 1;
+..\Src\EC20\EC20.c(1118): warning:  #1-D: last line of file ends without a newline
+  }
+..\Src\EC20\EC20.c: 6 warnings, 0 errors
+compiling user.c...
+compiling main.c...
+..\Src\MPU9250\mmpu9250.h(40): warning:  #47-D: incompatible redefinition of macro "MAG_XOUT_L"  (declared at line 62 of "..\Src\MP9250\mp9250.h")
+  #define MAG_XOUT_L				0X03	
+..\Src\MPU9250\mmpu9250.h(41): warning:  #47-D: incompatible redefinition of macro "MAG_XOUT_H"  (declared at line 63 of "..\Src\MP9250\mp9250.h")
+  #define MAG_XOUT_H				0X04
+..\Src\MPU9250\mmpu9250.h(42): warning:  #47-D: incompatible redefinition of macro "MAG_YOUT_L"  (declared at line 64 of "..\Src\MP9250\mp9250.h")
+  #define MAG_YOUT_L				0X05
+..\Src\MPU9250\mmpu9250.h(43): warning:  #47-D: incompatible redefinition of macro "MAG_YOUT_H"  (declared at line 65 of "..\Src\MP9250\mp9250.h")
+  #define MAG_YOUT_H				0X06
+..\Src\MPU9250\mmpu9250.h(44): warning:  #47-D: incompatible redefinition of macro "MAG_ZOUT_L"  (declared at line 66 of "..\Src\MP9250\mp9250.h")
+  #define MAG_ZOUT_L				0X07
+..\Src\MPU9250\mmpu9250.h(45): warning:  #47-D: incompatible redefinition of macro "MAG_ZOUT_H"  (declared at line 67 of "..\Src\MP9250\mp9250.h")
+  #define MAG_ZOUT_H				0X08
+../Src/main.c(255): warning:  #68-D: integer conversion resulted in a change of sign
+  	uint8_t Flag_run =SUCCFULL_STA-1;  //set zero
+../Src/main.c(337): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	altitude1 = (1013.25-(bmp_data.v_actual_press_float/100))*9;    //通过气压换算高度 , 参考高度点
+../Src/main.c(252): warning:  #177-D: variable "Uart_count"  was declared but never referenced
+  	uint32_t Uart_count=0;  //Uart_count is used to test uart 
+../Src/main.c(254): warning:  #177-D: variable "Flag_test"  was declared but never referenced
+  	uint8_t Flag_test=SUCCFULL_STA;    //set one
+../Src/main.c(255): warning:  #177-D: variable "Flag_run"  was declared but never referenced
+  	uint8_t Flag_run =SUCCFULL_STA-1;  //set zero
+../Src/main.c(258): warning:  #177-D: variable "ad1"  was declared but never referenced
+  	uint32_t ad1;
+../Src/main.c(262): warning:  #177-D: variable "test_count"  was declared but never referenced
+  	uint8_t test_count=0;
+../Src/main.c(263): warning:  #177-D: variable "test_flag"  was declared but never referenced
+  	uint8_t test_flag=1;
+../Src/main.c(264): warning:  #177-D: variable "count_ex"  was declared but never referenced
+  	uint8_t count_ex=100;
+../Src/main.c(265): warning:  #177-D: variable "count_OK"  was declared but never referenced
+  	uint8_t count_OK=0;
+../Src/main.c(266): warning:  #550-D: variable "pTempdate"  was set but never used
+  	uint8_t *pTempdate;
+../Src/main.c(267): warning:  #177-D: variable "m"  was declared but never referenced
+  	uint8_t m=0;
+../Src/main.c(268): warning:  #177-D: variable "test_counter_polling"  was declared but never referenced
+  	uint8_t test_counter_polling=0;
+../Src/main.c(270): warning:  #177-D: variable "value"  was declared but never referenced
+  	float value=1.234;
+../Src/main.c(271): warning:  #177-D: variable "t"  was declared but never referenced
+  	uint8_t t=0;	            	    	//默认开启上报
+../Src/main.c(273): warning:  #177-D: variable "aacx"  was declared but never referenced
+  	short aacx,aacy,aacz;	        		//加速度传感器原始数据
+../Src/main.c(273): warning:  #177-D: variable "aacy"  was declared but never referenced
+  	short aacx,aacy,aacz;	        		//加速度传感器原始数据
+../Src/main.c(273): warning:  #177-D: variable "aacz"  was declared but never referenced
+  	short aacx,aacy,aacz;	        		//加速度传感器原始数据
+../Src/main.c(274): warning:  #177-D: variable "gyrox"  was declared but never referenced
+  	short gyrox,gyroy,gyroz;        		//陀螺仪原始数据 
+../Src/main.c(274): warning:  #177-D: variable "gyroy"  was declared but never referenced
+  	short gyrox,gyroy,gyroz;        		//陀螺仪原始数据 
+../Src/main.c(274): warning:  #177-D: variable "gyroz"  was declared but never referenced
+  	short gyrox,gyroy,gyroz;        		//陀螺仪原始数据 
+../Src/main.c(275): warning:  #177-D: variable "temp"  was declared but never referenced
+  	short temp;		                		//温度 
+../Src/main.c(276): warning:  #177-D: variable "buf"  was declared but never referenced
+  	char buf[100];
+../Src/main.c(277): warning:  #177-D: variable "tbuf"  was declared but never referenced
+  	uint8_t tbuf[18]; 
+../Src/main.c(280): warning:  #177-D: variable "strx"  was declared but never referenced
+  	char *strx;
+../Src/main.c(561): warning:  #177-D: function "MX_RTC_Init"  was declared but never referenced
+  static void MX_RTC_Init(void)
+../Src/main.c(735): warning:  #177-D: function "MX_USB_OTG_FS_HCD_Init"  was declared but never referenced
+  static void MX_USB_OTG_FS_HCD_Init(void)
+../Src/main.c(754): warning:  #177-D: function "MX_DMA_Init"  was declared but never referenced
+  static void MX_DMA_Init(void) 
+../Src/main.c: 34 warnings, 0 errors
+linking...
+stm32_new\stm32_new.axf: Warning: L6989W: Could not apply patch sdcomp-29491-629360 to instruction VPOP     {d8-d13} at offset 0x54, instruction is within an IT block and is not the last instruction for acos.o(i.__hardfp_acos).
+stm32_new\stm32_new.axf: Warning: L6989W: Could not apply patch sdcomp-29491-629360 to instruction VPOP     {d8-d14} at offset 0x54, instruction is within an IT block and is not the last instruction for acos_x.o(i.____hardfp_acos$lsc).
+stm32_new\stm32_new.axf: Warning: L6989W: Could not apply patch sdcomp-29491-629360 to instruction VPOP     {d8-d15} at offset 0xf4, instruction is within an IT block and is not the last instruction for log.o(i.__hardfp_log).
+stm32_new\stm32_new.axf: Warning: L6989W: Could not apply patch sdcomp-29491-629360 to instruction VPOP     {d8-d15} at offset 0xf0, instruction is within an IT block and is not the last instruction for log_x.o(i.____hardfp_log$lsc).
+stm32_new\stm32_new.axf: Warning: L6989W: Could not apply patch sdcomp-29491-629360 to instruction VPOP     {d8-d12} at offset 0x24, instruction is within an IT block and is not the last instruction for sin_i_x.o(i.____kernel_sin$lsc).
+Program Size: Code=79740 RO-data=5060 RW-data=280 ZI-data=9456  
+Finished: 0 information, 5 warning and 0 error messages.
+FromELF: creating hex file...
+"stm32_new\stm32_new.axf" - 0 Error(s), 45 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.4.0.pack
+                ARM.CMSIS.5.4.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.1.2
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32L4xx_DFP.2.0.0.pack
+                Keil.STM32L4xx_DFP.2.0.0
+                STMicroelectronics STM32L4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_stm32_new
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\Core\Include
+  C:\Keil_v5\ARM\PACK\Keil\STM32L4xx_DFP\2.0.0\Drivers\CMSIS\Device\ST\STM32L4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.1.2
+Build Time Elapsed:  00:00:29
+</pre>
+</body>
+</html>
